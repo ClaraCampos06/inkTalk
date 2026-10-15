@@ -1,0 +1,528 @@
+/* =========================================================
+   inkTalk() · CC
+   um css só, mobile-first (substitui mobile.css, tablet.css e pc.css)
+
+   fontes, só duas:
+   Noto Sans JP → o que é marca e comando: wordmark, títulos, menu, botões
+   Cantarell    → o que é conversa: balões, campo de texto, falas do bot
+
+   cores e fontes moram em :root. para alinhar com o inkBase,
+   troque só os valores aqui em cima.
+   ========================================================= */
+
+:root {
+  /* cores */
+  --fundo: #0b0a082c;
+  --texto: rgba(255, 255, 255, .89);
+  --suave: rgba(255, 255, 255, .6);
+  --linha: rgba(255, 255, 255, .85);
+  --linha-fraca: rgba(255, 255, 255, .18);
+  --calor: rgba(117, 72, 12, .22); /* o âmbar dos gradientes antigos */
+  --vidro: rgba(11, 10, 8, 0.137);
+
+  /* fontes */
+  --f-marca: "Noto Sans JP", sans-serif;
+  --f-conversa: "Cantarell", sans-serif;
+
+  /* formas */
+  --raio: 30px;
+  --raio-balao: 16px;
+  --largura-chat: 52rem;
+
+  /* imagem de fundo (celular e tablet) */
+  --imagem: url("../img/fundo1.jpg");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "topo   topo"
+    "menu   chat"
+    "rodape rodape";
+  overflow: hidden;
+  color: var(--texto);
+  font-family: var(--f-conversa);
+  font-size: 1rem;
+  background:
+    linear-gradient(rgba(7, 5, 0, 0.884), rgba(3, 3, 3, 0)),
+    url(../img/carro.jpg) center top / cover no-repeat,
+    var(--fundo);
+}
+p{
+    font-family: var(--f-conversa);
+}
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.so-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+/* ---------- topo ---------- */
+
+.header {
+  grid-area: topo;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--linha-fraca);
+}
+
+.header h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 1rem;
+  border-right: 1px solid var(--linha);
+  font-family: var(--f-marca);
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.header h2{
+    font-size: 1.5rem;
+}
+.fa-regular{
+
+    min-width: 100px;
+    max-width: 200px;
+    font-family: var( --f-marca);
+}
+#studio {
+  margin-top: .35rem;
+  font-size: .55rem;
+  letter-spacing: .04em;
+  color: var(--suave);
+}
+
+.titulo h2 {
+  font-family: var(--f-marca);
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.titulo p {
+  margin-top: .15rem;
+  font-size: .8rem;
+  color: var(--suave);
+}
+
+
+/* ---------- menu lateral ---------- */
+
+.left {
+  grid-area: menu;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem .25rem;
+  border-right: 1px solid var(--linha-fraca);
+}
+
+.left button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  padding: .4rem .25rem;
+  border: 0;
+  background: none;
+  color: var(--texto);
+  font-family: var(--f-conversa);
+  font-weight: 300;
+  font-size: .65rem;
+  cursor: pointer;
+  transition: color .2s;
+}
+
+.left button i {
+  font-size: 1.35rem;
+}
+
+.left button:hover {
+  color: #fff;
+}
+
+/* o início se separa dos atalhos de conversa */
+#house {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--linha);
+}
+
+
+/* ---------- conversa ---------- */
+
+.right {
+  grid-area: chat;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem .75rem;
+}
+
+#chat {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding: .25rem .25rem 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .3) transparent;
+}
+
+.usuario,
+.assistente {
+  max-width: min(85%, 36rem);
+  padding: .75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+/* cada balão tem o canto reto do lado de quem fala */
+.assistente {
+  align-self: flex-start;
+  border: 1px solid var(--linha-fraca);
+  border-radius: 0 var(--raio-balao) var(--raio-balao) var(--raio-balao);
+  background: linear-gradient(135deg, rgba(11, 10, 8, .75), var(--calor));
+}
+
+.usuario {
+  align-self: flex-end;
+  border-radius: var(--raio-balao) 0 var(--raio-balao) var(--raio-balao);
+  background: rgba(255, 255, 255, .07);
+}
+
+/* "você:" e "CC:" ficam discretos, a fala é o que importa */
+.usuario > strong:first-child,
+.assistente > strong:first-child {
+  margin-right: .35em;
+  font-weight: 400;
+  color: var(--suave);
+}
+
+.chips {
+  align-self: flex-start;
+  max-width: min(100%, 36rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+/* "digitando..." */
+.assistente.digitando {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: .9rem 1rem;
+}
+
+.digitando span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--texto);
+  animation: pulo 1s infinite;
+}
+
+.digitando span:nth-child(2) { animation-delay: .15s; }
+.digitando span:nth-child(3) { animation-delay: .3s; }
+
+@keyframes pulo {
+  0%, 80%, 100% { opacity: .2; transform: translateY(0); }
+  40%           { opacity: 1;  transform: translateY(-4px); }
+}
+
+
+/* ---------- tela inicial (montada pelo chat.js) ---------- */
+
+.inicioText {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding: .5rem .25rem;
+}
+
+.inicioText h1 {
+  font-family: var(--f-marca);
+  font-weight: 200;
+  font-size: clamp(3.25rem, 12vw, 4.75rem);
+  line-height: 1;
+}
+
+/* o primeiro parágrafo é o nome do produto; os demais são conversa */
+.inicioText p:first-of-type {
+  font-family: var(--f-marca);
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: var(--suave);
+}
+
+.inicioText p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+#listaPrincipal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.5rem;
+  margin: .5rem 0;
+  padding: .9rem 0;
+  border-top: 1px solid var(--linha);
+  border-bottom: 1px solid var(--linha);
+  list-style: none;
+  font-family: var(--f-marca);
+  font-weight: 300;
+  font-size: 1.15rem;
+  text-transform: lowercase;
+}
+
+
+/* ---------- botões e links em forma de pílula ---------- */
+
+#box button,
+.chips button,
+.assistente a,
+.footerLeft a {
+  display: inline-block;
+  padding: .5rem 1.1rem;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: transparent;
+  color: var(--texto);
+  font-family: var(--f-marca);
+  font-weight: 300;
+  font-size: .85rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+#box button:hover,
+.chips button:hover,
+.assistente a:hover,
+.footerLeft a:hover {
+  background: #fff;
+  color: var(--fundo);
+}
+
+.assistente a {
+  margin: .25rem 0;
+}
+
+
+/* ---------- campo de mensagem ---------- */
+
+#box {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-top: .5rem;
+  padding: .35rem .35rem .35rem 1rem;
+  border: 1px solid var(--linha);
+  border-radius: 0 var(--raio) var(--raio) var(--raio);
+  background: rgba(11, 10, 8, .35);
+}
+
+#box:focus-within {
+  box-shadow: 0 0 0 1px #fff;
+}
+
+#box i {
+  color: var(--suave);
+}
+
+#box input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--texto);
+  font-family: var(--f-conversa);
+  font-size: 1rem;
+}
+
+#box input::placeholder {
+  color: var(--suave);
+}
+
+
+/* ---------- rodapé ---------- */
+
+.footer {
+  grid-area: rodape;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1rem;
+  border-top: 1px solid var(--linha-fraca);
+}
+
+.footerLeft {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.footerLeft h1 {
+  font-family: var(--f-marca);
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.footerLeft a {
+  padding: .35rem .85rem;
+  font-size: .8rem;
+}
+
+.footerRight p {
+  max-width: 11rem;
+  font-family: var(--f-marca);
+  font-weight: 300;
+  font-size: .65rem;
+  line-height: 1.4;
+  text-align: right;
+  color: var(--suave);
+}
+
+
+/* ---------- tablet ---------- */
+
+@media (min-width: 600px) {
+  body {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  .header {
+    padding: 1rem 1.5rem;
+  }
+
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .titulo h2 {
+    font-size: 1.2rem;
+  }
+
+  .right {
+    padding: 1.25rem 1.5rem 1rem;
+  }
+
+  .footerRight p {
+    max-width: none;
+    font-size: .75rem;
+  }
+}
+
+
+/* ---------- computador ---------- */
+
+@media (min-width: 900px) {
+  :root {
+    --imagem: url("../img/homem.jpg");
+  }
+
+  body {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "topo   menu"
+      "chat   chat"
+      "rodape rodape";
+  }
+
+  /* o menu sobe e fica na linha do topo */
+  .left {
+    flex-direction: row;
+    gap: 1.75rem;
+    padding: 1rem 1.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--linha-fraca);
+  }
+
+  .left button {
+    width: auto;
+    padding: .4rem .5rem;
+  }
+
+  #house {
+    padding: .4rem 1.5rem .4rem .5rem;
+    border-bottom: 0;
+    border-right: 1px solid var(--linha);
+  }
+
+  .right {
+    align-items: center;
+    background: var(--vidro);
+  }
+
+  #chat,
+  #box {
+    width: min(100%, var(--largura-chat));
+  }
+
+  .usuario,
+  .assistente {
+    font-size: 1.05rem;
+  }
+
+  .footer {
+    padding: .75rem 2rem;
+  }
+}
+
+
+/* ---------- quem prefere menos movimento ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .digitando span {
+    animation: none;
+    opacity: .6;
+  }
+
+  #box button,
+  .chips button,
+  .assistente a,
+  .footerLeft a,
+  .left button {
+    transition: none;
+  }
+}
