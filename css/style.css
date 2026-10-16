@@ -52,17 +52,17 @@ body {
   grid-template-columns: 4.5rem minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr) auto;
   grid-template-areas:
-    "topo   topo"
-    "menu   chat"
-    "rodape rodape";
+  "topo   topo"
+  "menu   chat"
+  "rodape rodape";
   overflow: hidden;
   color: var(--texto);
   font-family: var(--f-conversa);
   font-size: 1rem;
   background:
-    linear-gradient(rgba(7, 5, 0, 0.884), rgba(3, 3, 3, 0)),
-    url(../img/carro.jpg) center top / cover no-repeat,
-    var(--fundo);
+  linear-gradient(rgba(20, 34, 20, 0.884), rgba(249, 250, 249, 0.103)),
+  url(../img/carro.jpg) center top / cover no-repeat,
+  var(--fundo);
 }
 p{
     font-family: var(--f-conversa);
@@ -98,7 +98,7 @@ p{
   flex-direction: column;
   align-items: center;
   padding-right: 1rem;
-  border-right: 1px solid var(--linha);
+ 
   font-family: var(--f-marca);
   font-weight: 300;
   font-size: 2rem;
@@ -106,7 +106,8 @@ p{
 }
 
 .header h2{
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-weight: lighter;
 }
 .fa-regular{
 
@@ -144,7 +145,6 @@ p{
   align-items: center;
   gap: 1.25rem;
   padding: 1.25rem .25rem;
-  border-right: 1px solid var(--linha-fraca);
 }
 
 .left button {
@@ -172,12 +172,6 @@ p{
   color: #fff;
 }
 
-/* o início se separa dos atalhos de conversa */
-#house {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--linha);
-}
-
 
 /* ---------- conversa ---------- */
 
@@ -189,6 +183,7 @@ p{
   flex-direction: column;
   padding: 1rem 1rem .75rem;
 }
+
 
 #chat {
   flex: 1;
@@ -215,13 +210,15 @@ p{
 /* cada balão tem o canto reto do lado de quem fala */
 .assistente {
   align-self: flex-start;
-  border: 1px solid var(--linha-fraca);
+  border: none;
   border-radius: 0 var(--raio-balao) var(--raio-balao) var(--raio-balao);
-  background: linear-gradient(135deg, rgba(11, 10, 8, .75), var(--calor));
+  background: linear-gradient(rgba(29, 27, 18, 0.884), rgba(249, 250, 249, 0.103));
 }
+
 
 .usuario {
   align-self: flex-end;
+  border: none;
   border-radius: var(--raio-balao) 0 var(--raio-balao) var(--raio-balao);
   background: rgba(255, 255, 255, .07);
 }
@@ -308,9 +305,12 @@ p{
   font-family: var(--f-marca);
   font-weight: 300;
   font-size: 1.15rem;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 
+.left i{
+  font-size: 1.5rem;
+}
 
 /* ---------- botões e links em forma de pílula ---------- */
 
@@ -483,11 +483,7 @@ p{
     padding: .4rem .5rem;
   }
 
-  #house {
-    padding: .4rem 1.5rem .4rem .5rem;
-    border-bottom: 0;
-    border-right: 1px solid var(--linha);
-  }
+
 
   .right {
     align-items: center;

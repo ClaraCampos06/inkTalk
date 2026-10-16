@@ -154,15 +154,15 @@ function mostrarInicio() {
     chat.innerHTML = `
         <div class="inicioText">
             <h1>CC</h1>
-            <p class="paragrafo">assistenteVirtual()</p> <br>
-            <p class="paragrafo">Conheça nossos tatuadores e agende um horário digitando:</p>
+            <p class="paragrafo">inkTalk()</p> <br>
+            <p class="paragrafo">Espaço onde idéias encontram pessoas, projetos são tirados do papel e a expressãp vira conversa.</p>
             <ul id="listaPrincipal">
-                <li>Agendar</li>
-                <li>Horários</li>
-                <li>Tatuadores</li>
-                <li>Orçamento</li>
+            <li>Comunidade</li>
+                <li>Conexão</li>
+                <li>Troca</li>
+                
             </ul>
-            <p class="paragrafo">Ou selecione o ícone correspondente</p>
+            <p class="paragrafo">Tire suas dúvidas conversando com o CC inkTalk</p>
         </div>
     `
 }
