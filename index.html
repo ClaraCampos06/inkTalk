@@ -2,83 +2,57 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inkTalk()</title>
+
     <link rel="stylesheet" href="css/style.css">
 
-   <style>@import url('https://fonts.googleapis.com/css2?family=Average+Sans&family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Hachi+Maru+Pop&family=Noto+Sans+JP:wght@100..900&display=swap');</style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Average+Sans&family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Hachi+Maru+Pop&family=Noto+Sans+JP:wght@100..900&display=swap');</style>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <title>inkTalk()</title>
 </head>
 <body>
-   
-       <div class="header">
-        <h1>CC
-        </h1>
+
+    <div class="header">
+        <h1>CC</h1>
         <h2>inkTalk()</h2>
-       
-       </div>
+    </div>
 
 
+    <!-- MENU LATERAL -->
+    <div class="left">
+        <i class="fa-regular fa-house"      id="house"      title="Início"></i>
+        <i class="fa-regular fa-clock"      id="calendario" title="Funcionamento"></i>
+        <i class="fa-regular fa-user"       id="tatuadores" title="Tatuadores"></i>
+        <i class="fa-solid fa-calculator"   id="agendamento" title="Orçamento e agendamento"></i>
+    </div>
 
 
-   <div class="left">
+    <!-- CHAT -->
+    <div class="right">
+        <div id="chat"></div>
 
-    <i class="fa-regular fa-house" id="house"></i>
-
-    <i class="fa-regular fa-calendar-check" id="calendario"></i>
-
-    <i class="fa-regular fa-user" id="tatuadores"></i>
-
-    <i class="fa-regular fa-comments" id="agendamento"></i>
-
-    
-
-</div>
-
-
-
-
-
-
-       <div class="right">
-         <div id="chat"></div>
-
-
-            <div id="box">
+        <div id="box">
             <i class="fa-regular fa-comment-dots"></i>
-           <input type="text" id="mensagem" placeholder="Digite aqui " >
-           <button onclick="enviarMensagem()">Enviar  ></button>
-           
-        
-            </div>
-
-       </div>
+            <input type="text" id="mensagem" placeholder="Digite aqui">
+            <button onclick="enviarMensagem()">Enviar ></button>
+        </div>
+    </div>
 
 
-
-
-
-
-
-
-
-
-       <div class="footer">
+    <div class="footer">
         <div class="footerLeft">
             <h1>CC</h1>
-            <a href="https://www.instagram.com/cc.inked/" target="_blank">ClaraCampos</a>
-
+            <a href="https://www.instagram.com/cc.inked/" target="_blank" rel="noopener">ClaraCampos</a>
         </div>
 
         <div class="footerRight">
             <p>Chat inteligente programado pelo CC</p>
         </div>
-       </div>
+    </div>
 
-       
-
-   <!-- <script src="script.js"></script> -->
     <script src="js/chat.js"></script>
 </body>
 </html>

@@ -523,3 +523,25 @@ p{
   }
 }
 
+/* =========================================================
+   ADICIONAR no FINAL do css/style.css do inkTalk
+   (seus arquivos mobile.css e tablet.css continuam como estão)
+   ========================================================= */
+
+/* Link das respostas que levam para outros projetos do CC */
+.linkCC {
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: inherit;
+}
+
+.linkCC:hover {
+    opacity: 0.8;
+}
+
+/* Ícones do menu lateral: mostram dica ao passar o mouse */
+.left i {
+    cursor: pointer;
+}
